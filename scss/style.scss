@@ -1,0 +1,590 @@
+@charset "UTF-8";
+
+html {
+  font-size: 62.5%;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+body {
+  line-height: 1.7;
+  font-family: "Noto Sans JP", sans-serif;
+  font-feature-settings: "pkna";
+  font-size: 1.6rem;
+  margin: 0;
+}
+button {
+  padding: 0;
+}
+// variable
+$color--black: black;
+$color--white: white;
+$color--green: #2498b3; //ボタンの背景色
+$color--skyblue: rgb(229, 244, 247); //ドロップダウンメニューの背景色、余白
+$color--blue: rgb(212, 237, 245); //リストにカーソルを合わせている時の色ul
+$color--emerald: rgb(75, 150, 176); //リスト内の文字色が反転したときの色li
+
+// ヘッダー
+.header {
+  width: 100%;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  background: #fff;
+  z-index: 1100;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+// header左上部分
+.header-logo {
+  height: 33px;
+  width: auto;
+}
+.header-Top-text {
+  min-width: 0%;
+  width: 0%;
+  letter-spacing: 0px;
+  margin-left: 16px;
+  color: $color--black;
+  background-color: $color--white;
+  line-height: 1.3;
+  font-weight: 900;
+  font-size: 14px;
+}
+.header-title {
+  p {
+    margin: 0 0 0 21px;
+    width: 160px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  a {
+    color: #131d34;
+    text-decoration: none;
+    line-height: 1.3;
+    font-weight: 900;
+    height: 70px;
+    display: flex;
+    align-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    transition: .3s;
+  }
+  span {
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+  strong {
+    font-size: 1.8rem;
+    font-weight: bolder;
+    margin: 0;
+  }
+}
+
+// header右上nav部分
+.header-nav {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  height: 70px;
+  width: auto;
+  color: $color--black;
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: 0px;
+  ul li a {
+    padding: 15px 60px 15px 15px;
+  }
+}
+
+// nav部分のスタイリング
+.nav-body {
+  position: relative;
+  height: 70px;
+  width: auto;
+  text-decoration: none;
+  align-items: center;
+  background-color: $color--white;
+  color: $color--black;
+  line-height: 1.3;
+  font-weight: 700;
+  a {
+    display: flex;
+    background-color: $color--white;
+    padding: 0px 15px;
+  }
+  :hover {
+    background: $color--blue;
+    transition: 0.2s;
+    @media screen and (max-width: 1200px) {
+      background: $color--skyblue;
+    }
+  }
+}
+// link部分のリストの設定
+.nav-link {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  line-height: 1.3;
+  font-weight: 400;
+  font-size: 1.6rem;
+
+  // マウスが置かれたときにドロップダウンメニューを表示
+  position: absolute;
+  top: 70px;
+  left: 0;
+  z-index: 1100;
+  li {
+    a {
+      white-space: nowrap;
+      display: block;
+      height: auto;
+      background-color: $color--skyblue;
+      padding: 0px 15px;
+      text-decoration: none;
+      color: $color--black;
+      line-height: 1.7;
+    }
+    :hover {
+      color: $color--emerald;
+      background: $color--white;
+      transition: 0.1s;
+    }
+  }
+  display: none;
+}
+
+// 受講お申し込みの背景と文字の変更
+.nav-body-sp {
+  a {
+    display: flex;
+    height: 70px;
+    width: auto;
+    align-items: center;
+    color: $color--white;
+    background-color: $color--green;
+    line-height: 1.3;
+    padding: 0px 15px;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+}
+
+// ハンバーガーメニュー
+.nav-button {
+  background: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  transition: 0.3s;
+  @media screen and(min-width: 1200px) {
+    display: none;
+  }
+  &.is-open {
+    background: $color--green;
+  }
+  &::before,
+  &::after {
+    content: "";
+    width: 23px;
+    height: 2px;
+    background: $color--green;
+    position: absolute;
+    left: calc(50% - (11.5px));
+    display: block;
+    transition: transform 0.2s;
+  }
+  &::before {
+    top: 16px;
+  }
+  &::after {
+    top: 34px;
+  }
+  >span {
+    width: 23px;
+    height: 2px;
+    font-size: 0;
+    background-size: auto 2px;
+    background: $color--green;
+    position: absolute;
+    left: calc(50% - (11.5px));
+    top: 50%;
+    transition: transform 0.2s;
+  }
+  &.is-open {
+    &::before {
+      transform: rotate(45deg);
+      top: 25px;
+      background: #fff;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      top: 25px;
+      background: #fff;
+    }
+    >span {
+      background: none;
+    }
+  }
+}
+
+/***** メイン *****/
+.main {
+  padding-top: 70px;
+}
+
+// 中央の説明ボックス
+.Top-Head {
+  position: relative;
+  height: 650px;
+  overflow: hidden;
+  background-image: url("..//images/bg-hero3.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.Top-Head-layer1 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.Top-Head-layer2 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/bg-hero2.png");
+  background-size: cover;
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+.Top-Head-layer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+  background-image: url("../images/bg-hero1.png");
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 200;
+  box-sizing: border-box;
+}
+.Top-Head-body {
+  max-width: 530px;
+  border-radius: 10px;
+  padding: 43px 40px 19px;
+  text-align: center;
+  background-color: $color--white;
+  text-align: center;
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  img {
+    width: 280px;
+    height: auto;
+  }
+  p {
+    margin: 1.3em 0 .5em;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  a {
+    padding: 24px 37px;
+    font-size: 18px;
+    background: $color--green;
+    color: $color--white;
+    display: block;
+    text-decoration: none;
+    border-radius: 4px;
+    border: solid 1px $color--green;
+  }
+}
+.Top-Head-body-click {
+  margin: 0 10px 1em 5px;
+  display: inline-block;
+  line-height: 1;
+  a {
+    transition: .5s;
+  }
+}
+
+// 画面下、黒のボックス
+.background-black {
+  background: #000;
+  padding: 64px 0px;
+  z-index: 500;
+}
+.wrap .wrap--wide {
+  max-width: 1078px;
+}
+.wrap {
+  margin: 0 auto;
+}
+
+.recommendation {
+  position: relative;
+  display: flex;
+  margin-top: -263px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 1000;
+}
+.recommendation__entry {
+  margin: 0 50px;
+  width: 229px;
+}
+.recommendation__title {
+  text-align: center;
+  p {
+    margin: 0.2em 0 0;
+    font-weight: 700;
+    font-size: 24px;
+    box-sizing: border-box;
+  }
+  .recommendation__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    color: #000;
+    background: #fff;
+    border: solid 6px #000;
+    margin: 0 -1px 0 0;
+    i {
+      text-align: center;
+      line-height: 230px;
+      font-size: 100px;
+    }
+  }
+}
+
+.recommendation__body {
+  margin: .5em 0 0;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+
+// SP
+@media screen and (max-width: 767px) {
+  .Top-Head {
+    height: 0px;
+    padding-bottom: 320px;
+    background-position: center -25px;
+  }
+  .Top-Head-layer {
+    background-size: cover;
+    align-items: flex-end;
+    background-position: center -30px;
+  }
+  .Top-Head-layer2 {
+    background-size: cover;
+    background-position: center -25px;
+  }
+  .Top-Head-body {
+    width: 100%;
+    max-width: 100%;
+    padding: 9px 0 13px;
+    border-radius: 0;
+  }
+  .Top-Head-body {
+    img {
+      display: none;
+    }
+    p {
+      margin: .5em 0;
+      font-size: 1.3rem;
+    }
+  }
+  .Top-Head-body-click {
+    a {
+      transition: .5s;
+      padding: 12px 18px;
+      font-size: 1.6rem;
+    }
+  }
+  .recommendation {
+    margin-top: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .recommendation__entry {
+    margin: 0;
+    margin-bottom: 2.5em;
+    width: auto;
+  }
+  .wrap {
+    margin: 0 10px;
+  }
+}
+
+// レスポンシブ時に三つの丸の間の幅を徐々に狭める
+@media screen and (min-width: 768px) and (max-width: 1078px) {
+  .wrap {
+    margin: 0 10px;
+  }
+  .recommendation__entry {
+    width: 29.33%;
+    margin: 0 2%;
+  }
+}
+
+// レスポンシブ時のヘッダー部分
+@media screen and (max-width: 1200px) {
+  .header {
+    height: 50px;
+  }
+  .header-title {
+    p {
+      margin: 10px;
+      height: 30px;
+    }
+    p a {
+      height: 30px;
+    }
+    p a img {
+      height: 30px;
+    }
+  }
+// レスポンシブ時にnavをハンバーガーボタンに置き換える
+  .header-nav {
+    li {
+      display: none;
+    }
+  }
+  .nav {
+    position: absolute;
+    transition: 0.2s;
+    top: -700%;
+    width: 100vw;
+    ul li a {
+      height: auto;
+      padding: 10px;
+    }
+    ul li ul li a {
+      padding: 10px 10px 10px 25px;
+    }
+    .header-nav {
+      width: 100vw;
+      height: auto;
+      padding: 0;
+      position: absolute;
+      top: 50px;
+      background: rgba(44, 184, 216, .9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      left: 0%;
+    }
+    li {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .is-open {
+    top: 0%;
+  }
+  .nav-cross {
+    padding: 10px;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      background: #000;
+      margin-top: -1px;
+    }
+      &::before {
+        width: 24px;
+        height: 2px;
+        right: 13px;
+      }
+      &::after {
+        width: 2px;
+        height: 24px;
+        right: 24px;
+      }
+    &.open {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      background: #000;
+      margin-top: -1px;
+    }
+      &::before {
+        width: 24px;
+        height: 2px;
+        right: 13px;
+        z-index: 10;
+      }
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        height: auto;
+        margin-top: 0;
+        background-color: #f7f7f7;
+        z-index: 9;
+      }
+    }
+  }
+  .nav-link {
+    li {
+      a {
+        background: #fff;
+      }
+      :hover {
+        color: #000;
+        background: $color--skyblue;
+      }
+    }
+  }
+  .main {
+    padding-top: 50px;
+  }
+  .nav-body {
+    ul {
+      position: static;
+    }
+  }
+}
+
+// レスポンシブ時に右側の文字幅を狭める
+@media screen and (max-width: 1260px) {
+  .nav-body a {
+    padding: 0px 10px;
+  }
+}
+
+// 左側のheader-Top-textを非表示にする
+@media screen and (max-width: 1280px) {
+  .header-Top-text {
+    display: none;
+  }
+}
